@@ -447,6 +447,15 @@ docker run -it -d --rm -v $PWD:/data --ipc=host --network=host mapbox/robosat:la
 docker run -it --rm -v $PWD:/data --ipc=host --network=host mapbox/robosat:latest-cpu features /data/predict_segmentation-masks /data/predict_geojson_features
 ```
 
+可以尝试下面的命令：
+```shell
+docker run -it --rm -v E:/robosat_buildings_training:/data --ipc=host --network=host mapbox/robosat:latest-cpu features --type parking --dataset /data/dataset-building-weights.toml /data/predict_segmentation-masks /data/predict_geojson_features
+
+```
+这里的parking对应robosat/tools/features.py文件中的handlers = {"parking": ParkingHandler}的key为parking。
+
+对应的.toml文件中的classes = ['background', 'parking']，也要是parking，本仓库中原记录为buildings。
+
 > usage: `./rs features [-h] --type {parking} --dataset DATASET masks out`
 >
 > - positional arguments:
